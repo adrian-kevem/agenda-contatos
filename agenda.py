@@ -28,7 +28,7 @@ def buscar_contato(contato_buscado):
             print("Email: " + AGENDA[contato]["Email"])
             print("Endereço: " + AGENDA[contato]["Endereço"] + "\n")
     if(encontrado == False):
-        print("\n>>>>>>>>>> Contato não encontrado!\n")
+        print("\nCONTATO NÃO ENCONTRADO!\n")
 
 def adicionar_contato():
     nome = input("\nNome: ")
@@ -37,7 +37,7 @@ def adicionar_contato():
         "Email": input("Email: "),
         "Endereço": input("Endereço: "),
     }
-    print("\n>>>>>>>>>> Contato adicionado!\n")
+    print("\nCONTATO NÃO ADICIONADO!\n")
 
 def editar_contato(contato_buscado):
     encontrado = False
@@ -57,35 +57,35 @@ def excluir_contato(contato_buscado):
     AGENDA.pop(contato_buscado)
     print("\n>>>>>>>>>> Contato excluído!\n")
 
-print("\nTODOS OS CONTATOS")
-mostrar_contatos()
+def imprimir_menu():
+    print("\n-----------------------------------")
+    print("| 1 - MOSTRAR TODOS OS CONTATOS   |")
+    print("| 2 - BUSCAR CONTATO              |")
+    print("| 3 - ADICIONAR CONTATO           |")
+    print("| 4 - EDITAR CONTATO              |")
+    print("| 5 - EXCLUIR CONTATO             |")
+    print("| 0 - SAIR DA AGENDA              |")
+    print("-----------------------------------")
 
-print("\n-------------------------------------------------")
-
-print("\nBUSCAR CONTATOS")
-buscar_contato(input("\nContato buscado: "))
-
-print("\n-------------------------------------------------")
-
-print("\nINCLUIR CONTATO")
-adicionar_contato()
-
-print("\n-------------------------------------------------")
-
-print("\nEDITAR CONTATO")
-editar_contato(input("\nContato a ser editado: "))
-
-print("\n-------------------------------------------------")
-
-print("\nTODOS OS CONTATOS")
-mostrar_contatos()
-
-print("\n-------------------------------------------------")
-
-print("\nEXCLUIR CONTATO")
-excluir_contato(input("\nContato a ser excluído: "))
-
-print("\nTODOS OS CONTATOS")
-mostrar_contatos()
-
-print("\n-------------------------------------------------")
+sair = False
+while(sair == False):
+    imprimir_menu()
+    opcao = input("ESCOLHA UMA OPÇÃO: ")
+    if(opcao == "1"):
+        mostrar_contatos()
+    elif(opcao == "2"):
+        contato_buscado = input("\nCONTATO BUSCADO: ")
+        buscar_contato(contato_buscado)
+    elif(opcao == "3"):
+        adicionar_contato()
+    elif(opcao == "4"):
+        contato_buscado = input("\nCONTATO A SER EDITADO: ")
+        editar_contato(contato_buscado)
+    elif(opcao == "5"):
+        contato_buscado = input("\nCONTATO A SER EXCLUÍDO: ")
+        excluir_contato(contato_buscado)
+    elif(Opcao == "0"):
+        sair = True
+        print("\nSAINDO...")
+    else:
+        print("\nOPÇÃO INVÁLIDA!")
