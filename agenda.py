@@ -13,10 +13,13 @@ AGENDA["Patrick"] = {
 }
 
 def mostrar_contatos():
-    for contato in AGENDA:
-        print("\nNome: " + contato)
-        for item in AGENDA[contato]:
-            print("Telefone: " + AGENDA[contato][item])
+    if AGENDA:
+        for contato in AGENDA:
+            print("\nNome: " + contato)
+            for item in AGENDA[contato]:
+                print("Telefone: " + AGENDA[contato][item])
+    else:
+        print("\n>>>>>>>>>> Agenda vazia!\n")
 
 def buscar_contato(contato_buscado):
     encontrado = False
@@ -28,7 +31,7 @@ def buscar_contato(contato_buscado):
             print("Email: " + AGENDA[contato]["Email"])
             print("Endereço: " + AGENDA[contato]["Endereço"] + "\n")
     if(encontrado == False):
-        print("\nCONTATO NÃO ENCONTRADO!\n")
+        print("\n>>>>>>>>>> Contato não encontrado!\n")
 
 def adicionar_contato():
     nome = input("\nNome: ")
@@ -37,7 +40,7 @@ def adicionar_contato():
         "Email": input("Email: "),
         "Endereço": input("Endereço: "),
     }
-    print("\nCONTATO NÃO ADICIONADO!\n")
+    print("\n>>>>>>>>>> Contato adicionado!\n")
 
 def editar_contato(contato_buscado):
     encontrado = False
@@ -54,8 +57,13 @@ def editar_contato(contato_buscado):
         print("\n>>>>>>>>>> Contato não encontrado!\n")
     
 def excluir_contato(contato_buscado):
-    AGENDA.pop(contato_buscado)
-    print("\n>>>>>>>>>> Contato excluído!\n")
+    try:
+        AGENDA.pop(contato_buscado)
+        print("\n>>>>>>>>>> Contato excluído!\n")
+    except KeyError as error1:
+        print("\n>>>>>>>>>> Contato inexistente!")
+    except Exception as error0:
+        print("\n>>>>>>>>>> Algo errado aconteceu!")
 
 def imprimir_menu():
     print("\n-----------------------------------")
@@ -84,7 +92,7 @@ while(sair == False):
     elif(opcao == "5"):
         contato_buscado = input("\nCONTATO A SER EXCLUÍDO: ")
         excluir_contato(contato_buscado)
-    elif(Opcao == "0"):
+    elif(opcao == "0"):
         sair = True
         print("\nSAINDO...")
     else:
